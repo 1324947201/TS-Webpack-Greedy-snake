@@ -1,0 +1,312 @@
+@dark : #2d2b29;
+@light: #95a393;
+
+* {
+  padding   : 0;
+  margin    : 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1000px) {
+  #main {
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
+    width           : 9rem;
+    height          : 18rem;
+    margin          : 0.1rem auto;
+    background-color: #ffedd7;
+    border-radius   : 0.5rem;
+    border          : 0.05rem solid @dark;
+    box-shadow      : 5px 5px 10px rgba(0, 0, 0, .7);
+
+    #main-screen {
+      box-sizing   : content-box;
+      width        : 8rem;
+      height       : 9rem;
+      margin-top   : 0.5rem;
+      border-top   : 0.2rem solid #737070;
+      border-left  : 0.2rem solid #737070;
+      border-bottom: 0.2rem solid #b3b5b7;
+      border-right : 0.2rem solid #b3b5b7;
+
+      #score-panel {
+        display         : flex;
+        justify-content : space-between;
+        align-items     : center;
+        width           : 8rem;
+        height          : 1rem;
+        padding         : 0 0.5rem;
+        background-color: @light;
+        color           : #2d2b29;
+        font-family     : 'Courier';
+        font-size       : 0.4rem;
+        font-weight     : 900;
+        border-bottom   : 0.1rem solid @dark;
+        user-select     : none;
+      }
+
+      #game-screen {
+        position        : relative;
+        width           : 8rem;
+        height          : 8rem;
+        background-color: @light;
+
+        #food {
+          display        : flex;
+          flex-wrap      : wrap;
+          justify-content: center;
+          align-content  : center;
+          position       : absolute;
+          top            : 4rem;
+          left           : 4rem;
+          width          : 0.4rem;
+          height         : 0.4rem;
+
+          &>div {
+            width           : 0.14rem;
+            height          : 0.14rem;
+            transform       : rotate(45deg);
+            background-color: @dark;
+          }
+        }
+
+        #snake {
+          &>div {
+            position        : absolute;
+            width           : 0.4rem;
+            height          : 0.4rem;
+            border          : 0.02rem solid @light;
+            background-color: @dark;
+          }
+
+          & div:first-child {
+            top : 0;
+            left: 0.4rem;
+          }
+        }
+      }
+    }
+
+    #control {
+      display        : flex;
+      justify-content: space-between;
+      align-items    : center;
+      width          : 8rem;
+      height         : 1rem;
+
+      &>button {
+        width           : 2rem;
+        height          : 0.8rem;
+        font-weight     : 900;
+        color           : #eee;
+        background-color: #474747;
+        border-radius   : 8px;
+        border          : none;
+        box-shadow      : 0px 2px 0px #474747,
+          3px 3px 10px rgba(0, 0, 0, .5);
+        transition : all ease;
+        user-select: none;
+      }
+
+      &>button:active {
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, .9);
+        position  : relative;
+        top       : 1px;
+      }
+    }
+
+    #rocker {
+      display         : flex;
+      flex-direction  : column;
+      justify-content : center;
+      align-items     : center;
+      box-sizing      : content-box;
+      width           : 8rem;
+      height          : 5.5rem;
+      margin-top      : 0.5rem;
+      border-radius   : 50%;
+      background-color: #ffe3c2;
+      border          : 0.2rem solid #b3b5b7;
+
+
+      #center-left-right {
+        display        : flex;
+        justify-content: space-around;
+        width          : 8rem;
+      }
+
+      .btn,
+      #center-left-right .btn {
+        display         : block;
+        width           : 1.5rem;
+        height          : 1.5rem;
+        background-color: #474747;
+        border          : none;
+        border-radius   : 50%;
+        box-shadow      : 0px 2px 0px #474747,
+          3px 3px 10px rgba(0, 0, 0, .5);
+        transition: all ease;
+      }
+
+      .btn:active,
+      #center-left-right .btn:active {
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, .9);
+        position  : relative;
+        top       : 1px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #main {
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
+    width           : 450px;
+    height          : 900px;
+    margin          : 10px auto;
+    background-color: #ffedd7;
+    border-radius   : 25px;
+    border          : 2.5px solid @dark;
+    box-shadow      : 5px 5px 10px rgba(0, 0, 0, .7);
+
+    #main-screen {
+      box-sizing   : content-box;
+      width        : 400px;
+      height       : 450;
+      margin-top   : 25px;
+      border-top   : 10px solid #737070;
+      border-left  : 10px solid #737070;
+      border-bottom: 10px solid #b3b5b7;
+      border-right : 10px solid #b3b5b7;
+
+      #score-panel {
+        display         : flex;
+        justify-content : space-between;
+        align-items     : center;
+        width           : 400px;
+        height          : 50px;
+        padding         : 0 25px;
+        background-color: @light;
+        color           : #2d2b29;
+        font-family     : 'Courier';
+        font-size       : 20px;
+        font-weight     : 900;
+        border-bottom   : 5px solid @dark;
+        user-select     : none;
+      }
+
+      #game-screen {
+        position        : relative;
+        width           : 400px;
+        height          : 400px;
+        background-color: @light;
+
+        #food {
+          display        : flex;
+          flex-wrap      : wrap;
+          justify-content: center;
+          align-content  : center;
+          position       : absolute;
+          top            : 200px;
+          left           : 200px;
+          width          : 20px;
+          height         : 20px;
+
+          &>div {
+            width           : 7px;
+            height          : 7px;
+            transform       : rotate(45deg);
+            background-color: @dark;
+          }
+        }
+
+        #snake {
+          &>div {
+            position        : absolute;
+            width           : 20px;
+            height          : 20px;
+            border          : 1px solid @light;
+            background-color: @dark;
+          }
+
+          & div:first-child {
+            top : 0;
+            left: 20px;
+          }
+        }
+      }
+    }
+
+    #control {
+      display        : flex;
+      justify-content: space-between;
+      align-items    : center;
+      width          : 400px;
+      height         : 50px;
+
+      &>button {
+        width           : 100px;
+        height          : 40px;
+        font-weight     : 900;
+        color           : #eee;
+        background-color: #474747;
+        border-radius   : 8px;
+        border          : none;
+        box-shadow      : 0px 2px 0px #474747,
+          3px 3px 10px rgba(0, 0, 0, .5);
+        transition : all ease;
+        user-select: none;
+      }
+
+      &>button:active {
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, .9);
+        position  : relative;
+        top       : 1px;
+      }
+    }
+
+    #rocker {
+      display         : flex;
+      flex-direction  : column;
+      justify-content : center;
+      align-items     : center;
+      box-sizing      : content-box;
+      width           : 400px;
+      height          : 275px;
+      margin-top      : 25px;
+      border-radius   : 50%;
+      background-color: #ffe3c2;
+      border          : 10px solid #b3b5b7;
+
+
+      #center-left-right {
+        display        : flex;
+        justify-content: space-around;
+        width          : 400px;
+      }
+
+      .btn,
+      #center-left-right .btn {
+        display         : block;
+        width           : 75px;
+        height          : 75px;
+        background-color: #474747;
+        border          : none;
+        border-radius   : 50%;
+        box-shadow      : 0px 2px 0px #474747,
+          3px 3px 10px rgba(0, 0, 0, .5);
+        transition: all ease;
+      }
+
+      .btn:active,
+      #center-left-right .btn:active {
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, .9);
+        position  : relative;
+        top       : 1px;
+      }
+    }
+  }
+}
