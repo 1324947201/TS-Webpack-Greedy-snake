@@ -157,6 +157,24 @@
       }
     }
   }
+
+  #record-table {
+    width     : 100%;
+    text-align: center;
+    visibility: hidden;
+
+    tr {
+      height: 9%;
+
+      td {
+        height     : 100%;
+        border     : 2px solid @dark;
+        padding    : 1px 0;
+        font-weight: 900;
+        font-size  : 0.4px;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1000px) {
@@ -307,6 +325,19 @@
         position  : relative;
         top       : 1px;
       }
+    }
+  }
+
+  #record-table {
+    width     : 100%;
+    text-align: center;
+    visibility: hidden;
+
+    & td {
+      height     : 10%;
+      border     : 2px solid @dark;
+      padding    : 5px 0;
+      font-weight: 900;
     }
   }
 }

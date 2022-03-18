@@ -58,19 +58,50 @@ class ScorePanel {
     }
   }
 
+  //格式化当前时间函数
+  dateFormat(time: number) {
+    const t = new Date(time)
+    // 日期格式
+    const format = 'Y-m-d h:i:s'
+    let year: number | string = t.getFullYear()
+    // 由于 getMonth 返回值会比正常月份小 1
+    let month: number | string = t.getMonth() + 1
+    let day: number | string = t.getDate()
+    let hours: number | string = t.getHours()
+    let minutes: number | string = t.getMinutes()
+    let seconds: number | string = t.getSeconds()
+    month = month > 9 ? month : `0${month}`
+    day = day > 9 ? day : `0${day}`
+    hours = hours > 9 ? hours : `0${hours}`
+    minutes = minutes > 9 ? minutes : `0${minutes}`
+    seconds = seconds > 9 ? seconds : `0${seconds}`
+    const hash: { [key: string]: string } = {
+      'Y': year.toString(),
+      'm': month.toString(),
+      'd': day.toString(),
+      'h': hours.toString(),
+      'i': minutes.toString(),
+      's': seconds.toString()
+    }
+    return format.replace(/\w/g, o => {
+      return hash[o]
+    })
+  }
+
   //游戏结束，保存成绩
   save() {
     if (window.localStorage.getItem('championList') !== null) {
       let list = JSON.parse(window.localStorage.getItem('championList')!)
-      list.push({ score: this.score, level: this.level })
+      //将新数据压入数组
+      list.push({ score: this.score, time: this.dateFormat(Date.now()) })
       //将数组按照分数进行重排序
       list.sort(function (a: { score: number }, b: { score: number }) {
-        return a.score - b.score
+        return b.score - a.score
       })
+      list.splice(10, 1)
       window.localStorage.setItem('championList', JSON.stringify(list))
     } else {
-      let sp = { score: this.score, level: this.level }
-      let list = [sp]
+      let list = [{ score: this.score, time: this.dateFormat(Date.now()) }]
       window.localStorage.setItem('championList', JSON.stringify(list))
     }
   }

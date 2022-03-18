@@ -10,7 +10,9 @@
 
 <body>
   <div id="main">
+    <!-- 主屏幕 -->
     <div id="main-screen">
+      <!-- 记分牌区 -->
       <div id="score-panel">
         <div>
           SCORE: <span id="score">0</span>
@@ -20,24 +22,37 @@
           LEVEL: <span id="level">1</span>
         </div>
       </div>
+      <!-- 游戏区 -->
       <div id="game-screen">
+        <!-- 食物 -->
         <div id="food">
           <div></div>
           <div></div>
           <div></div>
           <div></div>
         </div>
+        <!-- 蛇 -->
         <div id="snake">
           <div id="head"></div>
           <div style="left: 0px; top: 0px;"></div>
         </div>
+        <table id="record-table">
+          <tr>
+            <td>SCORE</td>
+            <td>TIME</td>
+          </tr>
+        </table>
       </div>
+      <!-- 记录表格 -->
     </div>
+
+    <!-- 控制按钮区 -->
     <div id="control">
       <button id="stop">PAUSE</button>
       <button id="record">RECORD</button>
     </div>
 
+    <!-- 摇杆按钮区  -->
     <div id="rocker">
       <button id="up" class="btn"></button>
       <div id="center-left-right">
