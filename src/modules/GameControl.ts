@@ -72,46 +72,51 @@ class GameControl {
   keydownHandler(event: KeyboardEvent) {
     if (!this.isLive) return
     if (['ArrowLeft', 'ArrowDown', 'ArrowUp', 'ArrowRight', 'Left', 'Down', 'Up', 'Right'].indexOf(event.key) === -1) return
+    //检查是否掉头
+    this.checkBack(event.key)
+  }
+
+  checkBack(direction: string) {
     //判断是否在暂停状态中，如果是的话，按任意键继续游戏
-    if ((this.isPause === true) && (event.key === this.direction)) {
+    if ((this.isPause === true) && (direction === this.direction)) {
       this.pause()
     }
     //禁止蛇掉头，同时将掉头按键改为暂停键
     if (!this.isPause) {
       switch (this.direction) {
         case '':
-          if (event.key === ('ArrowLeft' || 'Left')) {
+          if (direction === ('ArrowLeft' || 'Left')) {
             break
           }
-          this.direction = event.key
+          this.direction = direction
           break
         case 'ArrowUp' || 'Up':
-          if (event.key === ('ArrowDown' || 'Down')) {
+          if (direction === ('ArrowDown' || 'Down')) {
             this.pause()
             break
           }
-          this.direction = event.key
+          this.direction = direction
           break
         case 'ArrowDown' || 'Down':
-          if (event.key === ('ArrowUp' || 'Up')) {
+          if (direction === ('ArrowUp' || 'Up')) {
             this.pause()
             break
           }
-          this.direction = event.key
+          this.direction = direction
           break
         case 'ArrowLeft' || 'Left':
-          if (event.key === ('ArrowRight' || 'Right')) {
+          if (direction === ('ArrowRight' || 'Right')) {
             this.pause()
             break
           }
-          this.direction = event.key
+          this.direction = direction
           break
         case 'ArrowRight' || 'Right':
-          if (event.key === ('ArrowLeft' || 'Left')) {
+          if (direction === ('ArrowLeft' || 'Left')) {
             this.pause()
             break
           }
-          this.direction = event.key
+          this.direction = direction
           break
       }
     }
@@ -119,10 +124,10 @@ class GameControl {
 
   //绑定摇杆按钮按下事件
   rocker() {
-    this.up.addEventListener('click', () => { this.direction = 'ArrowUp' })
-    this.down.addEventListener('click', () => { this.direction = 'ArrowDown' })
-    this.left.addEventListener('click', () => { this.direction = 'ArrowLeft' })
-    this.right.addEventListener('click', () => { this.direction = 'ArrowRight' })
+    this.up.addEventListener('click', () => { this.checkBack('ArrowUp') })
+    this.down.addEventListener('click', () => { this.checkBack('ArrowDown') })
+    this.left.addEventListener('click', () => { this.checkBack('ArrowLeft') })
+    this.right.addEventListener('click', () => { this.checkBack('ArrowRight') })
   }
 
   //绑定控制按钮按下事件
