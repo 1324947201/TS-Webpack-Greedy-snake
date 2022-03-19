@@ -70,14 +70,14 @@ class GameControl {
 
   //键盘按下响应函数
   keydownHandler(event: KeyboardEvent) {
-    //如果按了方向键以外的键，则无响应
+    if (!this.isLive) return
     if (['ArrowLeft', 'ArrowDown', 'ArrowUp', 'ArrowRight', 'Left', 'Down', 'Up', 'Right'].indexOf(event.key) === -1) return
     //判断是否在暂停状态中，如果是的话，按任意键继续游戏
-    if (this.isLive) {
-      if ((this.isPause === true) && (event.key === this.direction)) {
-        this.pause()
-      }
-      //禁止蛇掉头，同时将掉头按键改为暂停键
+    if ((this.isPause === true) && (event.key === this.direction)) {
+      this.pause()
+    }
+    //禁止蛇掉头，同时将掉头按键改为暂停键
+    if (!this.isPause) {
       switch (this.direction) {
         case '':
           if (event.key === ('ArrowLeft' || 'Left')) {
